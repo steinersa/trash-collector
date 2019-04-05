@@ -3,16 +3,16 @@ namespace TrashCollectorProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UserRoleAdded : DbMigration
+    public partial class UpdateZipToString : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.AspNetUsers", "UserRole", c => c.String());
+            AlterColumn("dbo.Customers", "Zip", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.AspNetUsers", "UserRole");
+            AlterColumn("dbo.Customers", "Zip", c => c.Int(nullable: false));
         }
     }
 }

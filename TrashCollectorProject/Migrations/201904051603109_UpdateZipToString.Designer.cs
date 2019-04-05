@@ -7,13 +7,13 @@ namespace TrashCollectorProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UserRoleAdded : IMigrationMetadata
+    public sealed partial class UpdateZipToString : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserRoleAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateZipToString));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904041959484_UserRoleAdded"; }
+            get { return "201904051603109_UpdateZipToString"; }
         }
         
         string IMigrationMetadata.Source

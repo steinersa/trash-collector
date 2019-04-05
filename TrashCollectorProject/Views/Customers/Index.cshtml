@@ -34,7 +34,7 @@
             @Html.DisplayNameFor(model => model.Zip)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PickupDay)
+            @Html.DisplayNameFor(model => model.DayId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ExtraPickup)
@@ -53,46 +53,46 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PickupDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExtraPickup)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempSuspendStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempSuspendEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Balance)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExtraPickup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TempSuspendStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TempSuspendEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Balance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
     }
 
 </table>

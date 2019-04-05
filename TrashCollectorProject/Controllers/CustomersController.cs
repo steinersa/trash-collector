@@ -17,7 +17,7 @@ namespace TrashCollectorProject.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            return View(db.Customers.Include(x => x.Day).ToList());
         }
 
         // GET: Customers/Details/5
@@ -38,7 +38,11 @@ namespace TrashCollectorProject.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            Customer customer = new Customer();
+            var days = db.Days.ToList();
+            Customer customer = new Customer()
+            {
+                Days = days
+            };
             return View(customer);
         }
 
@@ -47,7 +51,7 @@ namespace TrashCollectorProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance")] Customer customer)
         {
             if (ModelState.IsValid)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -27,21 +28,28 @@ namespace TrashCollectorProject.Models
         public string State { get; set; }
 
         [Display(Name = "Zip Code")]
-        public int Zip { get; set; }
-
-        [Display(Name = "Pickup Day")]
-        public string PickupDay { get; set; }
+        public string Zip { get; set; }
 
         [Display(Name = "Extra Pickup Request")]
-        public DateTime ExtraPickup { get; set; }
+        [DataType (DataType.Date)]
+        public DateTime ? ExtraPickup { get; set; }
 
         [Display(Name = "Temporarily Suspend Start Date")]
-        public DateTime TempSuspendStart { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime ? TempSuspendStart { get; set; }
 
         [Display(Name = "Temporarily Suspend End Date")]
-        public DateTime TempSuspendEnd { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime ? TempSuspendEnd { get; set; }
 
         [Display(Name = "Balance")]
         public double Balance { get; set; }
+
+        [ForeignKey("Day")]
+        [Display(Name = "Pickup Day")]
+        public int DayId { get; set; }
+        public Day Day { get; set; }
+
+        public IEnumerable<Day> Days { get; set; }
     }
 }
