@@ -70,7 +70,11 @@ namespace TrashCollectorProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var days = db.Days.ToList();
             Customer customer = db.Customers.Find(id);
+            {
+                customer.Days = days;
+            };
             if (customer == null)
             {
                 return HttpNotFound();
@@ -83,7 +87,7 @@ namespace TrashCollectorProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Street,City,State,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance")] Customer customer)
         {
             if (ModelState.IsValid)
             {
