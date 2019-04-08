@@ -18,8 +18,6 @@ namespace TrashCollectorProject.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            //db.Customers.Include(x => x.Day).ToList();
-            //Customer currentUser = db.Customers.AsEnumerable().Where(x => int.Parse(x.ApplicationId) == x.Id).SingleOrDefault();
             var userResult = User.Identity.GetUserId();
             Customer currentUser = db.Customers.Include(x => x.Day).Where(x => userResult == x.ApplicationId).FirstOrDefault();
             return View(currentUser);
@@ -56,7 +54,7 @@ namespace TrashCollectorProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance,ApplicationId")] Customer customer)
         {
             customer.ApplicationId = User.Identity.GetUserId(); //attaches foreign key applicationId to customer
             if (ModelState.IsValid)
@@ -93,7 +91,7 @@ namespace TrashCollectorProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance,ApplicationId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
