@@ -56,7 +56,7 @@ namespace TrashCollectorProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance,ApplicationId")] Customer customer)
         {
-            customer.ApplicationId = User.Identity.GetUserId(); //attaches foreign key applicationId to customer
+            customer.ApplicationId = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Customers.Add(customer);

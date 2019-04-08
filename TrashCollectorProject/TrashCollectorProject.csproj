@@ -201,6 +201,14 @@
     <Compile Include="Migrations\201904081331368_ApplicationUser.Designer.cs">
       <DependentUpon>201904081331368_ApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904081852438_EmployeeZipToString.cs" />
+    <Compile Include="Migrations\201904081852438_EmployeeZipToString.Designer.cs">
+      <DependentUpon>201904081852438_EmployeeZipToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904081904201_ApplicationUserIdAddedToEmployeeTable.cs" />
+    <Compile Include="Migrations\201904081904201_ApplicationUserIdAddedToEmployeeTable.Designer.cs">
+      <DependentUpon>201904081904201_ApplicationUserIdAddedToEmployeeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -311,6 +319,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904081331368_ApplicationUser.resx">
       <DependentUpon>201904081331368_ApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081852438_EmployeeZipToString.resx">
+      <DependentUpon>201904081852438_EmployeeZipToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081904201_ApplicationUserIdAddedToEmployeeTable.resx">
+      <DependentUpon>201904081904201_ApplicationUserIdAddedToEmployeeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

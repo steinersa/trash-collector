@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,10 @@ namespace TrashCollectorProject.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            var userResult = User.Identity.GetUserId();
+            var currentEmployee = db.Employees.Where(x => userResult == x.ApplicationId).SingleOrDefault();
+            var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "monday" && x.Zip == currentEmployee.Zip).ToList();
+            return View(todaysPickups);
         }
 
         // GET: Employees/Details/5
@@ -48,6 +52,7 @@ namespace TrashCollectorProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Zip")] Employee employee)
         {
+            employee.ApplicationId = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employee);
