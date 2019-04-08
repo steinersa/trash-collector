@@ -51,5 +51,9 @@ namespace TrashCollectorProject.Models
         public Day Day { get; set; }
 
         public IEnumerable<Day> Days { get; set; }
+
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

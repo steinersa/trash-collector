@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,11 @@ namespace TrashCollectorProject.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.Include(x => x.Day).ToList());
+            //db.Customers.Include(x => x.Day).ToList();
+            //Customer currentUser = db.Customers.AsEnumerable().Where(x => int.Parse(x.ApplicationId) == x.Id).SingleOrDefault();
+            var userResult = User.Identity.GetUserId();
+            Customer currentUser = db.Customers.Include(x => x.Day).Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            return View(currentUser);
         }
 
         // GET: Customers/Details/5
@@ -53,6 +58,7 @@ namespace TrashCollectorProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance")] Customer customer)
         {
+            customer.ApplicationId = User.Identity.GetUserId(); //attaches foreign key applicationId to customer
             if (ModelState.IsValid)
             {
                 db.Customers.Add(customer);

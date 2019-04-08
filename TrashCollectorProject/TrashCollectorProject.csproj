@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201904052015079_DateTimeNull.Designer.cs">
       <DependentUpon>201904052015079_DateTimeNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904081331368_ApplicationUser.cs" />
+    <Compile Include="Migrations\201904081331368_ApplicationUser.Designer.cs">
+      <DependentUpon>201904081331368_ApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -304,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904052015079_DateTimeNull.resx">
       <DependentUpon>201904052015079_DateTimeNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081331368_ApplicationUser.resx">
+      <DependentUpon>201904081331368_ApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
