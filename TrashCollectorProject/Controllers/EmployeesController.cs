@@ -171,5 +171,53 @@ namespace TrashCollectorProject.Controllers
             customer.Balance += 5.00;
             return customer;
         }
+
+        public ActionResult Filter()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Filter(string selectedDay)
+        {
+            var userResult = User.Identity.GetUserId();
+            var currentEmployee = db.Employees.Where(x => userResult == x.ApplicationId).SingleOrDefault();
+            if (selectedDay.ToLower() == "sunday")
+            {
+                var dayPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "sunday" && x.Zip == currentEmployee.Zip).ToList();
+                return View("FilteredIndex", dayPickups);
+            }
+            else if (selectedDay.ToLower() == "monday")
+            {
+                var dayPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "monday" && x.Zip == currentEmployee.Zip).ToList();
+                return View("FilteredIndex", dayPickups);
+            }
+            else if (selectedDay.ToLower() == "tuesday")
+            {
+                var dayPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "tuesday" && x.Zip == currentEmployee.Zip).ToList();
+                return View("FilteredIndex", dayPickups);
+            }
+            else if (selectedDay.ToLower() == "wednesday")
+            {
+                var dayPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "wednesday" && x.Zip == currentEmployee.Zip).ToList();
+                return View("FilteredIndex", dayPickups);
+            }
+            else if (selectedDay.ToLower() == "thursday")
+            {
+                var dayPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "thursday" && x.Zip == currentEmployee.Zip).ToList();
+                return View("FilteredIndex", dayPickups);
+            }
+            else if (selectedDay.ToLower() == "friday")
+            {
+                var dayPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "friday" && x.Zip == currentEmployee.Zip).ToList();
+                return View("FilteredIndex", dayPickups);
+            }
+            else if (selectedDay.ToLower() == "saturday")
+            {
+                var dayPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "saturday" && x.Zip == currentEmployee.Zip).ToList();
+                return View("FilteredIndex", dayPickups);
+            }
+            return View();
+        }
     }
 }

@@ -1,0 +1,17 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+@{
+    ViewBag.Title = "Filter";
+}
+
+<h2>Filter Pickups By Day</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="text" name="selectedDay" />
+    <input type="submit" />
+}
+
