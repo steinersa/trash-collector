@@ -3,7 +3,7 @@
 }
 
 @model TrashCollectorProject.Models.Customer
-<a href="~/Controllers/ManageController.cs">~/Controllers/ManageController.cs</a>
+
 @{
     ViewBag.Title = "Edit";
 }
@@ -16,7 +16,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Customer</h4>
+    <h4>Please make any changes to your current information or update your pickup requests: </h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -101,6 +101,7 @@
     </div>
 
     @Html.HiddenFor(model => model.ApplicationId);
+    @Html.HiddenFor(model => model.Balance);
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
