@@ -66,12 +66,14 @@ namespace TrashCollectorProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            AddToBalance(customer);
+            db.SaveChanges();
+            return View(customer);
         }
 
         // GET: Employees/Create
@@ -162,6 +164,12 @@ namespace TrashCollectorProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public Customer AddToBalance(Customer customer)
+        {
+            customer.Balance += 5.00;
+            return customer;
         }
     }
 }
