@@ -219,5 +219,11 @@ namespace TrashCollectorProject.Controllers
             }
             return View();
         }
+
+        public ActionResult Map(int? id)
+        {
+            Customer customer = db.Customers.Find(id);
+            return View(customer);
+        }
     }
 }

@@ -85,7 +85,8 @@
                 @Html.DisplayFor(modelItem => item.Balance)
             </td>
             <td>
-                @Html.ActionLink("Confirm", "Details", new { id = item.Id })
+                @Html.ActionLink("Confirm", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Map", "Map", new { id = item.Id})
             </td>
         </tr>
      }
