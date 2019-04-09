@@ -20,8 +20,43 @@ namespace TrashCollectorProject.Controllers
         {
             var userResult = User.Identity.GetUserId();
             var currentEmployee = db.Employees.Where(x => userResult == x.ApplicationId).SingleOrDefault();
-            var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "monday" && x.Zip == currentEmployee.Zip).ToList();
-            return View(todaysPickups);
+            var thisDay = DateTime.Today.ToLongDateString();
+            if (thisDay.Contains("Sunday"))
+            {
+                var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "sunday" && x.Zip == currentEmployee.Zip).ToList();
+                return View(todaysPickups);
+            }
+            else if (thisDay.Contains("Monday"))
+            {
+                var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "monday" && x.Zip == currentEmployee.Zip).ToList();
+                return View(todaysPickups);
+            }
+            else if (thisDay.Contains("Tuesday"))
+            {
+                var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "tuesday" && x.Zip == currentEmployee.Zip).ToList();
+                return View(todaysPickups);
+            }
+            else if (thisDay.Contains("Wednesday"))
+            {
+                var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "wednesday" && x.Zip == currentEmployee.Zip).ToList();
+                return View(todaysPickups);
+            }
+            else if (thisDay.Contains("Thursday"))
+            {
+                var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "thursday" && x.Zip == currentEmployee.Zip).ToList();
+                return View(todaysPickups);
+            }
+            else if (thisDay.Contains("Friday"))
+            {
+                var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "friday" && x.Zip == currentEmployee.Zip).ToList();
+                return View(todaysPickups);
+            }
+            else if (thisDay.Contains("Saturday"))
+            {
+                var todaysPickups = db.Customers.Include(x => x.Day).Where(x => x.Day.Name == "saturday" && x.Zip == currentEmployee.Zip).ToList();
+                return View(todaysPickups);
+            }
+            return View();
         }
 
         // GET: Employees/Details/5
