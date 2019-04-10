@@ -136,5 +136,71 @@ namespace TrashCollectorProject.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult EditExtraPickup()
+        {
+            var userResult = User.Identity.GetUserId();
+            int ? id = db.Customers.Include(x => x.Day).Where(x => userResult == x.ApplicationId).Select(x => x.Id).SingleOrDefault();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var days = db.Days.ToList();
+            Customer customer = db.Customers.Find(id);
+            {
+                customer.Days = days;
+            };
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditExtraPickup([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance,ApplicationId")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(customer);
+        }
+
+        public ActionResult EditSuspendServices()
+        {
+            var userResult = User.Identity.GetUserId();
+            int? id = db.Customers.Include(x => x.Day).Where(x => userResult == x.ApplicationId).Select(x => x.Id).SingleOrDefault();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var days = db.Days.ToList();
+            Customer customer = db.Customers.Find(id);
+            {
+                customer.Days = days;
+            };
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditSuspendServices([Bind(Include = "Id,FirstName,LastName,Street,City,State,DayId,Zip,PickupDay,ExtraPickup,TempSuspendStart,TempSuspendEnd,Balance,ApplicationId")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(customer);
+        }
     }
 }

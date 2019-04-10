@@ -18,7 +18,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Please make any changes to your current information or update your pickup requests: </h4>
+    <h4>Please make any changes to your current information: </h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -78,32 +78,11 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ExtraPickup, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ExtraPickup, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ExtraPickup, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.TempSuspendStart, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TempSuspendStart, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TempSuspendStart, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.TempSuspendEnd, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TempSuspendEnd, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TempSuspendEnd, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
+    @Html.HiddenFor(model => model.ExtraPickup);
     @Html.HiddenFor(model => model.ApplicationId);
     @Html.HiddenFor(model => model.Balance);
+    @Html.HiddenFor(model => model.TempSuspendEnd);
+    @Html.HiddenFor(model => model.TempSuspendStart);
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
